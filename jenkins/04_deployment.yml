@@ -21,10 +21,16 @@ spec:
         - name: http-port
           containerPort: 8080
         volumeMounts:
-        - name: jenkins-config
+        - name: jenkins-home
           mountPath: /var/jenkins_home
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
       volumes:
-        - name: jenkins-config
+        - name: jenkins-home
           gcePersistentDisk:
             pdName: jenkins-config
             fsType: ext4
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+            type: File

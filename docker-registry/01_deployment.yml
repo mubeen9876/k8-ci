@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: docker-registry
   labels:
-    app: nginx
+    app: docker-registry
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: docker-registry
   template:
     metadata:
       labels:
-        app: nginx
+        app: docker-registry
     spec:
       containers:
-      - name: nginx
-        image: mubeen9876/nginx:jenkins
+      - name: docker-registry
+        image: docker.io/registry
         ports:
         - name: http-port
-          containerPort: 80
+          containerPort: 5000
